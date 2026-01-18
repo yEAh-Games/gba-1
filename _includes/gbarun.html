@@ -1,3 +1,4 @@
+-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -21,21 +22,7 @@
 		<script src="/js/gba.js"></script>
 		<script src="/resources/xhr.js"></script>
 		<script src="/resources/biosbin.js"></script>
-		<script>
-					// Run game url
-					window.addEventListener('DOMContentLoaded', () => {
-					  const filePath = 'game.gba';
-					  fetch(filePath)
-						.then(response => response.blob())
-						.then(blob => {
-						  const file = new File([blob], 'game.gba', {type: 'application/octet-stream'});
-						  const loader = {
-							files: [file],
-						  };
-						  run.call(loader, loader.files[0]);
-						});
-					});
-				  </script>
+
 		<script>
 			// Check for the fullscreen parameter in the URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -355,7 +342,21 @@ if (fullscreenParam === 'true') {
 					accept=".gba"
 					onchange="run(this.files[0]);"
 				/>
-			
+					<script>
+					// Run game url
+					window.addEventListener('DOMContentLoaded', () => {
+					  const filePath = 'game.gba';
+					  fetch(filePath)
+						.then(response => response.blob())
+						.then(blob => {
+						  const file = new File([blob], 'game.gba', {type: 'application/octet-stream'});
+						  const loader = {
+							files: [file],
+						  };
+						  run.call(loader, loader.files[0]);
+						});
+					});
+				  </script>
 				<button onclick="document.getElementById('saveloader').click()">
 					Upload Savegame
 				</button>
